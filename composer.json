@@ -1,0 +1,19 @@
+{
+    "name": "zpfei/office",
+    "description": "this is office package\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D excel package",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "zpfei",
+            "email": "zpfv@qq.com"
+        }
+    ],
+    "require": {
+    	"phpoffice/phpexcel": "^1.8"
+    },
+    "autoload": {
+        "psr-4": {
+            "zpfei\\office\\": "src/"
+        }
+    }
+}
