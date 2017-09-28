@@ -32,7 +32,11 @@ class Excel
 
 	public function sheet($index=0)
 	{
-		$this->excel->setActiveSheetIndex(0);
+		if ($index>0) {
+			$this->excel->createSheet();
+		}
+		$this->excel->setActiveSheetIndex($index);
+		$this->index = $index;
 		return $this;
 	}
 
@@ -44,6 +48,8 @@ class Excel
 	public function data(Array $data)
 	{
 		$this->data = array_merge($this->data, $data);
+		$this->setData();
+		$this->index = false;
 		return $this;
 	}
 
@@ -60,17 +66,16 @@ class Excel
 				$this->excel->getActiveSheet()->SetCellValue($flag[$k].$line, $val);
 			}
 		}
+		$this->data = [];
 	}
 
 	public function save($filename)
 	{
-		$this->setData();
 		$objWriter = new PHPExcel_Writer_Excel2007($this->excel);
 		$objWriter->save($filename);
 	}
 	public function output($filename)
 	{
-		$this->setData();
 		$objWriter = new PHPExcel_Writer_Excel2007($this->excel);
 		$objWriter->save($filename);
 		header("Pragma: public");
